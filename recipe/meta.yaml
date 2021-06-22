@@ -1,6 +1,6 @@
 {% set name = "Send2Trash" %}
-{% set version = "1.5.0" %}
-{% set sha256 = "60001cc07d707fe247c94f74ca6ac0d3255aabcb930529690897ca2a39db28b2" %}
+{% set version = "1.7.1" %}
+{% set sha256 = "17730aa0a33ab82ed6ca76be3bb25f0433d0014f1ccf63c979bab13a5b9db2b2" %}
 
 package:
   name: {{ name|lower }}
@@ -14,10 +14,10 @@ source:
 build:
   number: 0
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
