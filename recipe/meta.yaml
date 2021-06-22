@@ -1,37 +1,41 @@
 {% set name = "Send2Trash" %}
-{% set version = "1.5.0" %}
-{% set sha256 = "60001cc07d707fe247c94f74ca6ac0d3255aabcb930529690897ca2a39db28b2" %}
+{% set version = "1.7.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 17730aa0a33ab82ed6ca76be3bb25f0433d0014f1ccf63c979bab13a5b9db2b2
 
 build:
   number: 0
   noarch: python
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  entry_points:
+    - send2trash = send2trash.__main__:main
 
 requirements:
-  build:
-    - python
+  host:
+    - python >=3.6
     - pip
   run:
-    - python
+    - python >=3.6
 
 test:
   imports:
     - send2trash
+  requires:
+    - pip
   commands:
+    - pip check
+    - send2trash -h
     - echo test > test.txt
     - python -c "from send2trash import *; send2trash('test.txt')"
 
 about:
-  home: https://github.com/hsoft/send2trash
+  home: https://github.com/arsenetar/send2trash
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
