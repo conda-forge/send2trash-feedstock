@@ -1,7 +1,7 @@
 About send2trash
 ================
 
-Home: https://github.com/hsoft/send2trash
+Home: https://github.com/arsenetar/send2trash
 
 Package license: BSD-3-Clause
 
