@@ -1,5 +1,5 @@
 {% set name = "Send2Trash" %}
-{% set version = "1.7.1" %}
+{% set version = "1.8.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 17730aa0a33ab82ed6ca76be3bb25f0433d0014f1ccf63c979bab13a5b9db2b2
+  sha256: d2c24762fd3759860a0aff155e45871447ea58d2be6bdd39b5c8f966a0c99c2d
 
 build:
   number: 0
