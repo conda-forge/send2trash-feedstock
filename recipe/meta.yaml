@@ -1,10 +1,10 @@
 {% set version = "1.8.2" %}
 
+{% set pytest_args = '--cov-fail-under=37' %}
+
 {% if noarch_platform == "osx" %}
   # probably related to azure CI perms/paths, etc.
-  {% set pytest_args = '-k "not test_trash_topdir"' %}
-{% else %}
-  {% set pytest_args = '' %}
+  {% set pytest_args = pytest_args ~ ' -k "not test_trash_topdir"' %}
 {% endif %}
 
 package:
