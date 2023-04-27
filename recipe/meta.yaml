@@ -17,21 +17,27 @@ build:
 
 requirements:
   host:
-    - python >=3.6
+    - __{{ noarch_platform }}
     - pip
-  run:
     - python >=3.6
+  run:
+    - __{{ noarch_platform }}
+    - python >=3.6
+    {% if noarch_platform == "osx" %}- pyobjc-framework-cocoa{% endif %}
+    {% if noarch_platform == "win" %}- pywin32{% endif %}
 
 test:
+  source_files:
+    - tests
   imports:
     - send2trash
   requires:
     - pip
+    - pytest-cov
   commands:
     - pip check
     - send2trash -h
-    - echo test > test.txt
-    - python -c "from send2trash import *; send2trash('test.txt')"
+    - pytest -vv --cov=send2trash --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=100
 
 about:
   home: https://github.com/arsenetar/send2trash
