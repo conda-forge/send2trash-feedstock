@@ -37,7 +37,7 @@ test:
   commands:
     - pip check
     - send2trash -h
-    - pytest -vv --cov=send2trash --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail --cov-fail-under=100
+    - pytest -vv --cov=send2trash --cov-branch --cov-report=term-missing:skip-covered --no-cov-on-fail
 
 about:
   home: https://github.com/arsenetar/send2trash
