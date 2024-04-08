@@ -26,10 +26,11 @@ requirements:
   host:
     - __{{ noarch_platform }}
     - pip
-    - python >=3.6
+    - python >=3.7
+    - setuptools >=40.6.0
   run:
     - __{{ noarch_platform }}
-    - python >=3.6
+    - python >=3.7
     {% if noarch_platform == "osx" %}- pyobjc-framework-cocoa{% endif %}
     {% if noarch_platform == "win" %}- pywin32{% endif %}
 
