@@ -1,4 +1,4 @@
-{% set version = "1.8.2" %}
+{% set version = "1.8.3" %}
 
 {% set pytest_args = '--cov-fail-under=37' %}
 
@@ -13,12 +13,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/s/send2trash/Send2Trash-{{ version }}.tar.gz
-  sha256: c132d59fa44b9ca2b1699af5c86f57ce9f4c5eb56629d5d55fbb7a35f84e2312
+  sha256: b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
     - send2trash = send2trash.__main__:main
 
@@ -26,10 +26,11 @@ requirements:
   host:
     - __{{ noarch_platform }}
     - pip
-    - python >=3.6
+    - python >=3.7
+    - setuptools >=40.6.0
   run:
     - __{{ noarch_platform }}
-    - python >=3.6
+    - python >=3.7
     {% if noarch_platform == "osx" %}- pyobjc-framework-cocoa{% endif %}
     {% if noarch_platform == "win" %}- pywin32{% endif %}
 
