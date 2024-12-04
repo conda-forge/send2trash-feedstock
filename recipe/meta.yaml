@@ -12,11 +12,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/s/send2trash/Send2Trash-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/s/send2trash/Send2Trash-{{ version }}.tar.gz
   sha256: b18e7a3966d99871aefeb00cfbcfdced55ce4871194810fc71f4aa484b953abf
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   entry_points:
@@ -26,11 +26,11 @@ requirements:
   host:
     - __{{ noarch_platform }}
     - pip
-    - python >=3.7
+    - python {{ python_min }}
     - setuptools >=40.6.0
   run:
     - __{{ noarch_platform }}
-    - python >=3.7
+    - python >={{ python_min }}
     {% if noarch_platform == "osx" %}- pyobjc-framework-cocoa{% endif %}
     {% if noarch_platform == "win" %}- pywin32{% endif %}
 
@@ -42,6 +42,7 @@ test:
   requires:
     - pip
     - pytest-cov
+    - python {{ python_min }}
   commands:
     - pip check
     - send2trash -h
