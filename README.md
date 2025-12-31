@@ -3,11 +3,13 @@ About send2trash-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/send2trash-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/arsenetar/send2trash
+Home: https://pypi.org/project/send2trash
 
 Package license: BSD-3-Clause
 
 Summary: Python library to natively send files to Trash (or Recycle bin) on all platforms.
+
+Development: https://github.com/arsenetar/send2trash
 
 Current build status
 ====================
