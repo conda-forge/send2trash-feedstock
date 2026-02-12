@@ -14,7 +14,7 @@ source:
   sha256: 1c72b39f09457db3c05ce1d19158c2cbef4c32b8bedd02c155e49282b7ea7459
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     - ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check
@@ -46,7 +46,7 @@ tests:
     requirements:
       run:
         - pytest-cov
-        - python ${{ python_min }}
+        - python ${{ python_min }}.*
     script:
       - send2trash -h
       - coverage run --source=send2trash --branch -m pytest -vv --tb=long --color=yes
