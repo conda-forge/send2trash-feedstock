@@ -3,21 +3,21 @@ schema_version: 1
 
 context:
   version: "2.2.0"
-  python_check_max: "3.14"
+  python_check_max: "3.15"
 
 package:
   name: send2trash
   version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/s/send2trash/send2trash-${{ version }}.tar.gz
+  url: https://files.pythonhosted.org/packages/source/s/send2trash/send2trash-${{ version }}.tar.gz
   sha256: e0ac412073f7984288908d9d8b8d13c82be69a615bb513d948fa2f053447970a
 
 build:
   number: 0
   noarch: python
   script:
-    - ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check
+    - ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check --check-build-dependencies
   python:
     entry_points:
       - send2trash = send2trash.__main__:main
@@ -34,6 +34,13 @@ requirements:
     - python >=${{ python_min }}
 
 tests:
+  - package_contents:
+      strict: true
+      files:
+        - etc/conda/test-files/send2trash/***
+      site_packages:
+        - send2trash/**
+        - send2trash-${{ version }}.dist-info/**
   - python:
       imports: send2trash
       pip_check: true
@@ -42,15 +49,13 @@ tests:
         - ${{ python_check_max }}.*
   - files:
       source:
-        - tests/
+        - tests/**
     requirements:
       run:
         - pytest-cov
         - python ${{ python_min }}.*
     script:
-      - send2trash -h
-      - coverage run --source=send2trash --branch -m pytest -vv --tb=long --color=yes
-      - coverage report --show-missing --skip-covered --fail-under=37
+      file: run_test.py
 
 about:
   license: BSD-3-Clause
