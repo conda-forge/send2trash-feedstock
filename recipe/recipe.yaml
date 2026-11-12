@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "2.1.0"
+  version: "2.2.0"
   python_check_max: "3.14"
 
 package:
@@ -11,10 +11,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/s/send2trash/send2trash-${{ version }}.tar.gz
-  sha256: 1c72b39f09457db3c05ce1d19158c2cbef4c32b8bedd02c155e49282b7ea7459
+  sha256: e0ac412073f7984288908d9d8b8d13c82be69a615bb513d948fa2f053447970a
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script:
     - ${{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation --disable-pip-version-check
